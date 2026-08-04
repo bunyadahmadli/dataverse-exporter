@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRM Data Explorer</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <aside id="sidebar">
+    <div class="sidebar-header">
+      <h1>CRM Data Explorer</h1>
+      <input type="search" id="tableSearch" placeholder="Search tables..." autocomplete="off">
+      <div class="sidebar-meta" id="sidebarMeta"></div>
+    </div>
+    <nav id="tableList"></nav>
+  </aside>
+
+  <main id="main">
+    <div id="empty" class="empty">
+      <p>Select a table on the left.</p>
+    </div>
+
+    <div id="content" hidden>
+      <header class="content-header">
+        <div class="title-row">
+          <h2 id="tableTitle"></h2>
+          <span id="tableInfo" class="muted"></span>
+          <div class="spacer"></div>
+          <button id="columnsBtn" class="btn">Columns ▾</button>
+          <button id="exportBtn" class="btn">Download CSV</button>
+        </div>
+
+        <div id="columnPanel" class="column-panel" hidden>
+          <div class="column-panel-actions">
+            <button id="colsAll" class="link">select all</button>
+            <button id="colsNone" class="link">clear</button>
+            <input type="search" id="columnSearch" placeholder="Search columns..." autocomplete="off">
+          </div>
+          <div id="columnChecks" class="column-checks"></div>
+        </div>
+
+        <div class="filter-row">
+          <select id="filterColumn"></select>
+          <select id="filterOp">
+            <option value="contains">contains</option>
+            <option value="startswith">starts with</option>
+            <option value="eq">equals</option>
+            <option value="ne">not equal</option>
+            <option value="gt">&gt;</option>
+            <option value="gte">&ge;</option>
+            <option value="lt">&lt;</option>
+            <option value="lte">&le;</option>
+            <option value="null">is empty</option>
+            <option value="notnull">is not empty</option>
+          </select>
+          <input type="text" id="filterValue" placeholder="Value...">
+          <button id="addFilter" class="btn primary">Add filter</button>
+        </div>
+        <div id="filterChips" class="chips"></div>
+      </header>
+
+      <div id="gridWrap" class="grid-wrap">
+        <table id="grid">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+        <div id="loading" class="loading" hidden>Loading...</div>
+        <div id="gridError" class="grid-error" hidden></div>
+      </div>
+
+      <footer class="pager">
+        <button id="prevPage" class="btn">‹ Previous</button>
+        <span id="pageInfo"></span>
+        <button id="nextPage" class="btn">Next ›</button>
+        <div class="spacer"></div>
+        <label>Page size:
+          <select id="pageSize">
+            <option>25</option>
+            <option selected>50</option>
+            <option>100</option>
+            <option>250</option>
+          </select>
+        </label>
+      </footer>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

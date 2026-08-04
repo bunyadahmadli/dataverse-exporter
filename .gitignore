@@ -1,0 +1,10 @@
+bin/
+obj/
+.vs/
+*.user
+.DS_Store
+appsettings.local.json
+generated-models/
+.idea/*
+.editorconfig
+.env
